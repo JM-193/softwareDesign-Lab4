@@ -1,0 +1,54 @@
+= Software Design - Lab 4: Unit Test & CI/CD
+:authors: José_Manuel Mora
+:nofooter:
+:sectnums:
+:stem: latexmath
+:toc:
+:toclevels: 5
+:toc-title: Index
+:source-highlighter: highlight.js
+
+== Introducción
+
+El código base en Python simula un sistema de combate para videojuegos.
+
+=== Contexto
+
+Simulación modular de un sistema de combate en videojuegos, orientado a buenas prácticas de diseño de software (SOLID).
+
+El objetivo es diseñar sistemas desacoplados mediante interfaces e inyección de dependencias, facilitando pruebas unitarias y mantenimiento.
+
+=== Pruebas incluidas
+
+|====
+| Tipo de prueba | Descripción
+| `DummyWeapon` | Simula un arma, sin lógica real. Para probar `CombatSystem`.
+| `MockDamageCalculator` | Simula cálculo de daño para verificar el comportamiento de las armas.
+| `MagicMock` | Valida si se llamó a los métodos con los parámetros correctos.
+| Integración con Dummies | Valida que `CombatSystem` funciona correctamente cuando se inyectan implementaciones simuladas de `weapon`.
+|====
+
+== Desarrollo
+
+=== Extensión del sistema y unit test con dependency injection
+
+* Visualizar el código y las formas de testear.
+* Identificar features para agregar al sistema.
+* Agregar al menos un archivo con dicha feature, que sea un comportamiento nuevo al sistema.
+* Agregar tests interesantes y de alto valor para la nueva feature.
+
+==== ¿Cómo ejecutar los tests?
+
+Para ejecutar los tests, usar el siguiente comando en la terminal desde la raíz del proyecto:
+
+```bash
+python -m unittest discover -v
+```
+
+=== Creación de un pipeline CI/CD
+
+Investigar cómo crear un pipeline CI/CD para ejecutar los tests automáticamente en cada push al repositorio.
+
+== Entregable
+
+Subir el link del repositorio al aula virtual.
