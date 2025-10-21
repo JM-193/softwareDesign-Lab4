@@ -17,8 +17,8 @@ class CombatSystem(ICombatSystem):
         # Calcule crit damage
         critical_hit_text = ""
         if self.damage_calculator.check_critical_hit():
-            final_damage *= .5
-            critical_hit_text = " (¡Golpe crítico!)"
+            final_damage += 10
+            critical_hit_text = " (¡GOLPE CRÍTICO!)"
 
         # Apply defense reduction
         final_damage = self.defense_calculator.calculate_damage_after_defense(final_damage, target)

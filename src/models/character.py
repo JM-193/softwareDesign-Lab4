@@ -1,10 +1,12 @@
 class Character:
-    def __init__(self, name, health=100, initial_armor=25):
+    def __init__(self, name, health = 100, initial_armor = 25):
+        # Character's name
         self.name = name
+        # Health Points
         self.health = health
         self.is_alive = True
+        # Armor Values
         self.initial_armor = initial_armor
-        # Armor can vary during combat via buffs/debuffs
         self.armor = initial_armor
 
     def take_damage(self, damage):
