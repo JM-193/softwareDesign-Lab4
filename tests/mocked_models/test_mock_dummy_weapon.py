@@ -3,6 +3,7 @@ from unittest.mock import MagicMock
 from src.app.combat_system import CombatSystem
 from src.models.character import Character
 from src.models.weapon import Weapon
+from src.app.defense_calculator import NoDefenseCalculator
 from tests.mocked_models.dummy_weapon import DummyWeapon
 
 class TestDummyWeapon(unittest.TestCase):
@@ -12,7 +13,8 @@ class TestDummyWeapon(unittest.TestCase):
         mock_calculator = MagicMock()
         mock_calculator.check_critical_hit.return_value = True
 
-        combat = CombatSystem(mock_calculator)
+        # Defense was irrelevant to this test, so we use NoDefenseCalculator
+        combat = CombatSystem(mock_calculator, NoDefenseCalculator())
         hero = Character("Hero")
         enemy = Character("Enemy")
         dummy_weapon = DummyWeapon()

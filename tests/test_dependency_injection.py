@@ -3,6 +3,7 @@ from unittest.mock import MagicMock
 from src.app.combat_system import CombatSystem
 from src.models.character import Character
 from src.models.sword import Sword
+from src.app.defense_calculator import NoDefenseCalculator
 
 class TestDependencyInjection(unittest.TestCase):
 
@@ -11,7 +12,7 @@ class TestDependencyInjection(unittest.TestCase):
         mock_calculator = MagicMock()
         mock_calculator.check_critical_hit.return_value = False
 
-        combat = CombatSystem(mock_calculator)
+        combat = CombatSystem(mock_calculator, NoDefenseCalculator())
         hero = Character("Hero")
         enemy = Character("Enemy")
 
@@ -28,7 +29,7 @@ class TestDependencyInjection(unittest.TestCase):
         mock_calculator = MagicMock()
         mock_calculator.check_critical_hit.return_value = True
 
-        combat = CombatSystem(mock_calculator)
+        combat = CombatSystem(mock_calculator, NoDefenseCalculator())
         hero = Character("Hero")
         enemy = Character("Enemy")
         sword = Sword()

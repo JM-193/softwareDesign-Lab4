@@ -2,7 +2,7 @@ from src.app.i_defense_calculator import IDefenseCalculator
 
 class StandardDefenseCalculator(IDefenseCalculator):
     """
-    Standard damage reduction based on target's armor.
+    Standard damage reduction based on the target's armor.
 
     Each point of armor reduces damage by 1 point.
 
@@ -10,7 +10,7 @@ class StandardDefenseCalculator(IDefenseCalculator):
     """
 
     def calculate_damage_after_defense(self, damage, target):
-        """Calculates the damage after applying defender's defense stats"""
+        """Calculates the damage after applying the target's defense stats"""
 
         # Check if target has 'armor' attribute
         if not hasattr(target, 'armor'):
@@ -23,14 +23,14 @@ class StandardDefenseCalculator(IDefenseCalculator):
 
 class PercentageDefenseCalculator(IDefenseCalculator):
     """
-    Percentage-based damage reduction based on target's armor.
+    Percentage-based damage reduction based on the target's armor.
 
     Each point of armor reduces damage by 1%.
 
     Negative armor increases damage taken.
     """
     def calculate_damage_after_defense(self, damage, target):
-        """Calculates the damage after applying defender's defense stats"""
+        """Calculates the damage after applying the target's defense stats"""
 
         # Check if target has 'armor' attribute
         if not hasattr(target, 'armor'):
@@ -49,5 +49,5 @@ class PercentageDefenseCalculator(IDefenseCalculator):
 class NoDefenseCalculator(IDefenseCalculator):
     """ No damage reduction applied. Full damage is always dealt. """
     def calculate_damage_after_defense(self, damage, target):
-        """Returns the original damage without any reduction"""
+        """Calculates the damage after applying the target's defense stats"""
         return damage
