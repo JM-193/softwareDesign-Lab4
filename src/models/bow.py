@@ -2,6 +2,12 @@ from src.models.weapon import Weapon
 
 class Bow(Weapon):
     def attack(self, attacker, target):
-        damage = 12
-        target.take_damage(damage)
-        return f"{attacker.name} dispara flecha a {target.name} causando {damage} de daño"
+        """
+        Return the damage dealt by the weapon
+
+        Any other effects such as buffs or debuffs
+        should be handled before returning.
+        """
+
+        # Bow has a fixed damage of 12
+        return 12

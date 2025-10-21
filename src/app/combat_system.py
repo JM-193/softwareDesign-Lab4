@@ -1,19 +1,29 @@
 from src.app.i_combat_system import ICombatSystem
 
 class CombatSystem(ICombatSystem):
-    def __init__(self, damage_calculator):
+    def __init__(self, damage_calculator, defense_calculator):
         self.damage_calculator = damage_calculator
+        self.defense_calculator = defense_calculator
 
     def perform_attack(self, attacker, weapon, target):
+        # Check if the target is alive
         if not target.is_alive:
             return f"{target.name} ya está derrotado"
 
-        result = weapon.attack(attacker, target)
-        critical = self.damage_calculator.check_critical_hit()
+        # Get the base damage for the attack
+        base_damage = weapon.attack(attacker, target)
+        final_damage = base_damage
 
-        if critical:
-            bonus_damage = 10
-            target.take_damage(bonus_damage)
-            result += f" ¡GOLPE CRÍTICO! +{bonus_damage} daño extra"
+        # Calcule crit damage
+        critical_hit_text = ""
+        if self.damage_calculator.check_critical_hit():
+            final_damage *= .5
+            critical_hit_text = " (¡Golpe crítico!)"
 
-        return result
+        # Apply defense reduction
+        final_damage = self.defense_calculator.calculate_damage_after_defense(final_damage, target)
+
+        # Apply damage to the target
+        target.take_damage(final_damage)
+
+        return f"{attacker.name} ataca a {target.name} con {weapon.name}, causando {final_damage} de daño.{critical_hit_text}"

@@ -2,6 +2,12 @@ from src.models.weapon import Weapon
 
 class Sword(Weapon):
     def attack(self, attacker, target):
-        damage = 15
-        target.take_damage(damage)
-        return f"{attacker.name} ataca con espada a {target.name} causando {damage} de daño"
+        """
+        Return the damage dealt by the weapon
+
+        Any other effects such as buffs or debuffs
+        should be handled before returning.
+        """
+
+        # Sword has a fixed damage of 15
+        return 15
