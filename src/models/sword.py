@@ -1,16 +1,11 @@
 from src.models.weapon import Weapon
 
 class Sword(Weapon):
+    """"
+    Class representing a sword weapon.
+
+    The sword has a fixed damage of 15.
+    """
     def __init__(self):
-        super().__init__(name="espada")
-
-    def attack(self, attacker, target):
-        """
-        Return the damage dealt by the weapon
-
-        Any other effects such as buffs or debuffs
-        should be handled before returning.
-        """
-
-        # Sword has a fixed damage of 15
-        return 15
+        super().__init__(name = "espada",
+                         damage = 15)

@@ -11,7 +11,7 @@ class CombatSystem(ICombatSystem):
             return f"{target.name} ya está derrotado"
 
         # Get the base damage for the attack
-        base_damage = weapon.attack(attacker, target)
+        base_damage = weapon.attack()
         final_damage = base_damage
 
         # Calcule crit damage
@@ -25,5 +25,8 @@ class CombatSystem(ICombatSystem):
 
         # Apply damage to the target
         target.take_damage(final_damage)
+
+        # Apply any post-attack effects from the weapon (buffs, debuffs, etc.)
+        weapon.apply_post_attack_effects(attacker,target)
 
         return f"{attacker.name} ataca a {target.name} con {weapon.name}, causando {final_damage} de daño.{critical_hit_text}"

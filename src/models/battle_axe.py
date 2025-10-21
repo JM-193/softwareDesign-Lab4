@@ -2,20 +2,15 @@ from src.models.weapon import Weapon
 
 class BattleAxe(Weapon):
     def __init__(self):
-        super().__init__("hacha de batalla")
+        super().__init__(name = "hacha de batalla",
+                         damage = 20)
 
-    def attack(self, attacker, target):
+    def apply_post_attack_effects(self, attacker, target):
         """
-        Return the damage dealt by the weapon
+        Apply armor reduction after the attack is executed.
 
-        Any other effects such as buffs or debuffs
-        should be handled before returning.
+        The battle axe reduces the target's armor by 5 points on each hit.
+
+        Note: Armor could become negative, check if that's okay to you.
         """
-
-        # The battle axe reduces the target's armor by 5 points on each hit
-        # Note: Armor could be negative to give extra damage,
-        # each defense system should check if armor is outside its  own boundaries
         target.armor -= 5
-
-        # Battle axe has a fixed damage of 20
-        return 20
