@@ -1,6 +1,14 @@
 from abc import ABC, abstractmethod
 
 class Weapon(ABC):
+    def __init__(self, name: str):
+        self._name = name
+
+    @property
+    def name(self) -> str:
+        """Return the name of the weapon"""
+        return self._name
+
     @abstractmethod
     def attack(self, attacker, target) -> int:
         """

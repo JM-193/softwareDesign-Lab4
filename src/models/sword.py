@@ -1,6 +1,9 @@
 from src.models.weapon import Weapon
 
 class Sword(Weapon):
+    def __init__(self):
+        super().__init__(name="espada")
+
     def attack(self, attacker, target):
         """
         Return the damage dealt by the weapon
