@@ -8,13 +8,8 @@ class StandardDefenseCalculator(IDefenseCalculator):
 
     Negative armor increases damage
     """
-
     def calculate_damage_after_defense(self, damage, target):
         """Calculates the damage after applying the target's defense stats"""
-
-        # Check if target has 'armor' attribute
-        if not hasattr(target, 'armor'):
-            raise AttributeError("Target has no 'armor' attribute. Add one or use the NoDefenseCalculator.")
 
         reduced_damage = damage - target.armor
 
@@ -31,10 +26,6 @@ class PercentageDefenseCalculator(IDefenseCalculator):
     """
     def calculate_damage_after_defense(self, damage, target):
         """Calculates the damage after applying the target's defense stats"""
-
-        # Check if target has 'armor' attribute
-        if not hasattr(target, 'armor'):
-            raise AttributeError("Target has no 'armor' attribute. Add one or use the NoDefenseCalculator.")
 
         # Percentage is capped between -100% and 100% to avoid extreme cases
         armor_points = min(max(target.armor, -100), 100)
