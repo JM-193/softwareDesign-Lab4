@@ -38,3 +38,4 @@ class TestDependencyInjection(unittest.TestCase):
 
         # 15 de daño base + 10 de crítico = 25
         self.assertEqual(enemy.health, 75)
+

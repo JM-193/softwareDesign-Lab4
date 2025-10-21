@@ -17,3 +17,25 @@ class TestCharacter(unittest.TestCase):
 
         mage.take_damage(70)
         self.assertFalse(mage.is_alive)
+
+    def test_heal_increases_health(self):
+        """Test que la curación aumenta la salud"""
+        rogue = Character("Garrett")
+        rogue.take_damage(50)
+        rogue.heal(30)
+        self.assertEqual(rogue.health, 80)
+
+    def test_restore_armor_resets_armor_only_when_armor_is_less_than_initial_value(self):
+        """Test que restaurar la armadura la reinicia a su valor inicial, solo si es menor que el valor inicial"""
+        # Tiene 25 de armadura inicial por defecto
+        paladin = Character("Uther")
+
+        # Aumentamos la armadura
+        paladin.armor = 50
+        paladin.restore_armor()
+        self.assertEqual(paladin.armor, 50)  # No debería cambiar
+
+        # Disminuimos la armadura
+        paladin.armor = 10
+        paladin.restore_armor()
+        self.assertEqual(paladin.armor, 25)  # Debería restaurarse al valor inicial
